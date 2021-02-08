@@ -32,9 +32,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(car.CarId + car.ColorId + car.BrandId + car.ModelYear + " Model " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice);
             }
-
-            
-            //Console.WriteLine(car.Description + " " + car.ModelYear + " Model " + "Günlük Kiralama Bedeli: " + car.DailyPrice);
         }
     }
 }
