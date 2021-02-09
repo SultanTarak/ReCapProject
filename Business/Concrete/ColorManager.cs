@@ -1,8 +1,8 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
 
 namespace Business.Concrete
@@ -18,7 +18,7 @@ namespace Business.Concrete
         public void Add(Color color)
         {
             _colorDal.Add(color);
-            Console.WriteLine("Yeni renk eklendi.");
+            Console.WriteLine("Yen renk eklendi.");
         }
 
         public void Delete(Color color)
@@ -29,14 +29,13 @@ namespace Business.Concrete
 
         public List<Color> GetAll()
         {
-            throw new NotImplementedException();
+            return _colorDal.GetAll();
         }
 
         public void Update(Color color)
         {
             _colorDal.Update(color);
             Console.WriteLine("Renk güncellendi.");
-
         }
     }
 }
