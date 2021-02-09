@@ -17,9 +17,23 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetCarsByColorId(int colorId)
+        public void Add(Car car)
         {
-            return _carDal.GetAll(c => c.ColorId == colorId);
+            if (car.DailyPrice > 0)
+            {
+                _carDal.Add(car);
+                Console.WriteLine("Başarıyla eklendi.");
+            }
+            else
+            {
+                Console.WriteLine("Günlük kiralama fiyatı 0 TL'den büyük olmalıdır.");
+            }
+        }
+
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+            Console.WriteLine("Başarıyla silindi.");
         }
 
         public List<Car> GetAll()
@@ -27,27 +41,25 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
-        {
-            return _carDal.GetAll(c => c.BrandId==brandId);
-        }
-
         public List<Car> GetByDailyPrice(decimal min, decimal max)
         {
             return _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max);
         }
 
-        public void Add(Car car)
+        public List<Car> GetCarsByBrandId(int brandId)
         {
-            if (car.DailyPrice <= 0)
-            {
-                Console.WriteLine("Günlük fiyat 0'dan büyük olmalıdır.");
-                return;
-            }
-            if (car.Description.Length<2)
-            {
-                Console.WriteLine("Araba ismi minimum 2 karakter olmalıdır.");
-            }
+            return _carDal.GetAll(c => c.BrandId == brandId);
+        }
+
+        public List<Car> GetCarsByColorId(int colorId)
+        {
+            return _carDal.GetAll(c => c.ColorId == colorId);
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
+            Console.WriteLine("Başarıyla güncellendi.");
         }
     }
 }

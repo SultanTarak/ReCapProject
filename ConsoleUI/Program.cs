@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -13,11 +14,14 @@ namespace ConsoleUI
 
             Console.WriteLine("---Tüm Ürünleri Listele---");
 
+            //carManager.Add(new Car {CarId=7 , ModelYear = 2000, DailyPrice = 300, Description = "Otomatik Dizel" });
+
             foreach (var car in carManager.GetAll())
             {
                 Console.WriteLine(car.CarId + car.ColorId + car.BrandId + car.ModelYear + " Model " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice);
 
             }
+            
             Console.WriteLine("---Siyah Renkli Ürünleri Listele---");
 
             foreach (var car in carManager.GetCarsByColorId(2))
@@ -32,6 +36,11 @@ namespace ConsoleUI
             {
                 Console.WriteLine(car.CarId + car.ColorId + car.BrandId + car.ModelYear + " Model " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice);
             }
+
+            
+
+
+
         }
     }
 }
