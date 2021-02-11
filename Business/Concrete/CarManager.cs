@@ -20,14 +20,14 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            if (car.DailyPrice > 0)
+            if (car.DailyPrice > 0 && car.CarName.Length>2)
             {
                 _carDal.Add(car);
                 Console.WriteLine("Başarıyla eklendi.");
             }
             else
             {
-                Console.WriteLine("Günlük kiralama fiyatı 0 TL'den büyük olmalıdır.");
+                Console.WriteLine("Araba ismi en az 2 karakter olmalıdır ve günlük kiralama fiyatı 0 TL'den büyük olmalıdır.");
             }
         }
 

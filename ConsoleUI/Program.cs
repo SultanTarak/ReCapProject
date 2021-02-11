@@ -18,7 +18,9 @@ namespace ConsoleUI
             Console.WriteLine("---Tüm Ürünleri Listele---");
 
             //carManager.Add(new Car { CarId = 6, CarName = "Toyota" , ModelYear = 2001, DailyPrice = 300, Description = "Otomatik Dizel" });
-            
+
+            carManager.Add(new Car { CarId = 7, CarName="T", DailyPrice=500});
+
             foreach (var car in carManager.GetAll())
             {
                 Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
