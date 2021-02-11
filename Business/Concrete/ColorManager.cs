@@ -18,7 +18,7 @@ namespace Business.Concrete
         public void Add(Color color)
         {
             _colorDal.Add(color);
-            Console.WriteLine("Yen renk eklendi.");
+            Console.WriteLine("Yeni renk eklendi.");
         }
 
         public void Delete(Color color)
