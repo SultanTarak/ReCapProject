@@ -11,60 +11,91 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            ColorManager colorManager = new ColorManager(new EfColorDal());
 
-
-            Console.WriteLine("---Tüm Ürünleri Listele---");
+            //Console.WriteLine("---Tüm Ürünleri Listele---");
 
             //carManager.Add(new Car { CarId = 6, CarName = "Toyota" , ModelYear = 2001, DailyPrice = 300, Description = "Otomatik Dizel" });
 
-            carManager.Add(new Car { CarId = 7, CarName="T", DailyPrice=500});
+            //carManager.Update(new Car { CarId = 6, BrandId=6, ColorId=6});
 
-            foreach (var car in carManager.GetAll())
-            {
-                Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
-            }
+            //foreach (var car in carManager.GetAll())
+            //{
+            //    Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
+            //}
 
-            Console.WriteLine("---Renk Kodu 2 Olan Ürünleri Listele---");
+            //Console.WriteLine("---Renk Kodu 2 Olan Ürünleri Listele---");
 
-            foreach (var car in carManager.GetCarsByColorId(2))
-            {
-                Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
+            //foreach (var car in carManager.GetCarsByColorId(2))
+            //{
+            //    Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
 
-            }
+            //}
 
-            Console.WriteLine("---Fiyatı Min. 100 Maks. 500 Olan Ürünleri Listele---");
+            //Console.WriteLine("---Fiyatı Min. 100 Maks. 500 Olan Ürünleri Listele---");
 
-            foreach (var car in carManager.GetByDailyPrice(100, 500))
-            {
-                Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
-            }
+            //foreach (var car in carManager.GetByDailyPrice(100, 500).Data)
+            //{
+            //    Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
+            //}
 
             Console.WriteLine("Araba Id, Marka, Renk Listele (Join operasyonu ile)");
 
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+
+            if (result.Success == true)
             {
-                Console.WriteLine(car.CarId + "/" + car.BrandName + "/" + car.ColorName);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarId + "/" + car.BrandName + "/" + car.ColorName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
 
-            Console.WriteLine("Ürünlerin Markasını Listele");
+            //BrandManager brandManager = new BrandManager(new EfBrandDal());
 
-            foreach (var brand in brandManager.GetAll())
-            {
-                Console.WriteLine(brand.BrandId + "/" + brand.BrandName);
-            }
+            //brandManager.Update(new Brand { BrandId = 7, BrandName="Honda" });
 
-            //brandManager.Add(new Brand { BrandId = 6, BrandName="Toyota" });
+            //Console.WriteLine("Ürünlerin Markasını Listele");
 
-            Console.WriteLine("Ürünlerin Rengini Listele");
+            //var result = brandManager.GetAll();
 
-            foreach (var color in colorManager.GetAll())
-            {
-                Console.WriteLine(color.ColorId+ "/" + color.ColorName);
-            }
+            //if (result.Success == true)
+            //{
+            //    foreach (var brand in result.Data)
+            //    {
+            //        Console.WriteLine(brand.BrandId + "/" + brand.BrandName);
+            //    }
+            //    Console.WriteLine(result.Message);
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
 
-            //colorManager.Add(new Color { ColorId=6, ColorName="Green"});
+
+            //ColorManager colorManager = new ColorManager(new EfColorDal());
+
+            //colorManager.Add(new Color { ColorId = 6, ColorName = "Green" });
+
+            //Console.WriteLine("Ürünlerin Rengini Listele");
+
+            //var result = colorManager.GetAll();
+
+            //if (result.Success == true)
+            //{
+            //    foreach (var color in result.Data)
+            //    {
+            //        Console.WriteLine(color.ColorId + "/" + color.ColorName);
+            //    }
+            //    Console.WriteLine(result.Message);
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
 
 
         }
