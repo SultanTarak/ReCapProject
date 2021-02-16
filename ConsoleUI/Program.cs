@@ -10,22 +10,24 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //-------------------CAR------------------
+                    
             CarManager carManager = new CarManager(new EfCarDal());
 
-            //Console.WriteLine("---Tüm Ürünleri Listele---");
-
-            //carManager.Add(new Car { CarId = 6, CarName = "Toyota" , ModelYear = 2001, DailyPrice = 300, Description = "Otomatik Dizel" });
-
-            //carManager.Update(new Car { CarId = 6, BrandId=6, ColorId=6});
-
-            //foreach (var car in carManager.GetAll())
+            //var result = carManager.GetAll();
+            //foreach (var car in result.Data)
             //{
             //    Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
             //}
 
-            //Console.WriteLine("---Renk Kodu 2 Olan Ürünleri Listele---");
+            //carManager.Add(new Car { CarId = 6, CarName = "Toyota" , ModelYear = 2001, DailyPrice = 300, Description = "Otomatik Dizel" });
 
-            //foreach (var car in carManager.GetCarsByColorId(2))
+            //carManager.Update(new Car { CarId = 6, CarName = "Honda" });
+
+            //Console.WriteLine("Renk Kodu 2 Olan Ürünleri Listele");
+
+            //var result = carManager.GetCarsByColorId(2);
+            //foreach (var car in result.Data)
             //{
             //    Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
 
@@ -38,27 +40,28 @@ namespace ConsoleUI
             //    Console.WriteLine(car.CarId + " " + car.ModelYear + " " + car.Description + "Günlük Kiralama Bedeli: " + car.DailyPrice + "TL");
             //}
 
-            Console.WriteLine("Araba Id, Marka, Renk Listele (Join operasyonu ile)");
+            //Console.WriteLine("Araba Id, Marka, Renk Listele (Join operasyonu ile)");
 
-            var result = carManager.GetCarDetails();
+            //var result = carManager.GetCarDetails();
 
-            if (result.Success == true)
-            {
-                foreach (var car in result.Data)
-                {
-                    Console.WriteLine(car.CarId + "/" + car.BrandName + "/" + car.ColorName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
+            //if (result.Success == true)
+            //{
+            //    foreach (var car in result.Data)
+            //    {
+            //        Console.WriteLine(car.CarId + "/" + car.BrandName + "/" + car.ColorName);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
 
-            //BrandManager brandManager = new BrandManager(new EfBrandDal());
 
-            //brandManager.Update(new Brand { BrandId = 7, BrandName="Honda" });
+            //---------------BRAND-------------
 
-            //Console.WriteLine("Ürünlerin Markasını Listele");
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+
+            //brandManager.Update(new Brand { BrandId = 7, BrandName = "Honda" });
 
             //var result = brandManager.GetAll();
 
@@ -76,7 +79,9 @@ namespace ConsoleUI
             //}
 
 
-            //ColorManager colorManager = new ColorManager(new EfColorDal());
+            //----------------COLOR---------------
+
+            ColorManager colorManager = new ColorManager(new EfColorDal());
 
             //colorManager.Add(new Color { ColorId = 6, ColorName = "Green" });
 
@@ -97,7 +102,81 @@ namespace ConsoleUI
             //    Console.WriteLine(result.Message);
             //}
 
+           
+            
+            //----------------USER--------------
+            
+            UserManager userManager = new UserManager(new EfUserDal());
 
+            //var result = userManager.GetAll();
+            //if (result.Success)
+            //{
+            //    foreach (var user in result.Data)
+            //    {
+            //        Console.WriteLine(user.UserId + "/" + user.FirstName + "/" + user.LastName + "/" + user.Email);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+            
+            //userManager.Add(new User { UserId = 6, FirstName = "Leyla", LastName = "Türk", Email = "leyla.turk@hotmail.com", Password = "Leyla123" });
+
+
+
+
+            //--------------CUSTOMER----------------
+
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+            //var result = customerManager.GetAll();
+            //foreach (var customer in result.Data)
+            //{
+            //    Console.WriteLine(customer.UserId+"/"+customer.CustomerId+"/"+customer.CompanyName);
+            //}
+
+
+            //-----------RENTAL-----------
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //var result = rentalManager.GetAll();
+            //foreach (var rental in result.Data)
+            //{
+            //    Console.WriteLine(rental.RentalId+"/"+rental.RentDate + "/" +rental.ReturnDate);
+            //}
+
+            //var result = rentalManager.GetRentalDetails();
+            //if (result.Success==true)
+            //{
+            //    foreach (var rental in result.Data)
+            //    {
+            //        Console.WriteLine(rental.RentalId+"/" + rental.FirstName + "/" +rental.LastName + "/" +rental.BrandName + "/" +rental.ColorName + "/" +rental.CompanyName + "/" +rental.DailyPrice + "/" +rental.Description + "/" +rental.ModelYear + "/" +rental.RentDate + "/" +rental.ReturnDate);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+
+            DateTime rentDate = new DateTime(2020, 01, 12);
+            DateTime returnDate = new DateTime(2020, 02, 13);
+            Rental rental = new Rental
+            {
+                CustomerId = 8,
+                CarId = 8,
+                RentDate = rentDate,
+                ReturnDate = rentDate
+            };
+            var result = rentalManager.Add(rental);
+            if (result.Success)
+            {
+                Console.WriteLine("Araç kiralandı");
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
     }
 }

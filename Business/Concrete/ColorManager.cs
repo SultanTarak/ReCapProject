@@ -21,19 +21,19 @@ namespace Business.Concrete
         {
             if (color.ColorName.Length < 2)
             {
-                return new ErrorResult(Messages.ColorNameInvalid);
+                return new ErrorResult(Messages.NameInvalid);
             }
 
             _colorDal.Add(color);
 
-            return new SuccessResult(Messages.ColorAdded);
+            return new SuccessResult(Messages.Added);
         }
 
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
 
-            return new SuccessResult(Messages.BrandDeleted);
+            return new SuccessResult(Messages.Deleted);
         }
 
         public IDataResult<List<Color>> GetAll()
@@ -45,7 +45,7 @@ namespace Business.Concrete
         {
             _colorDal.Update(color);
 
-            return new SuccessResult(Messages.BrandUpdated);
+            return new SuccessResult(Messages.Updated);
         }
     }
 }
