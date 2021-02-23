@@ -14,6 +14,6 @@ namespace Business.Constants
         public static string Deleted = "Silme başarılı";
         public static string DeletedInvalid = "Silme başarısız";
         public static string Listed = "Ürünler listelendi.";
-        
+        public static string DailyPriceInvalid = "Birim fiyatı 0'dan büyük olmalıdır.";
     }
 }
