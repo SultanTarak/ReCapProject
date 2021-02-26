@@ -15,5 +15,8 @@ namespace Business.Constants
         public static string DeletedInvalid = "Silme başarısız";
         public static string Listed = "Ürünler listelendi.";
         public static string DailyPriceInvalid = "Birim fiyatı 0'dan büyük olmalıdır.";
+        public static string CarCountOfBrandError = "Bir markada en fazla 10 araç olabilir";
+        public static string CarNameAlreadyExists = "Aynı isimde başka bir araç mevcuttur";
+        public static string BrandLimitExceded= "Marka limiti aşıldığı için yeni araç eklenemiyor";
     }
 }

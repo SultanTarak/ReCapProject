@@ -32,6 +32,7 @@ namespace Business.Concrete
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
+
             return new SuccessResult(Messages.Deleted);
         }
 
@@ -40,17 +41,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.Listed);
         }
 
+
+        [ValidationAspect(typeof(CustomerValidator))]
         public IResult Update(Customer customer)
         {
-            if (customer.CompanyName.Length>0)
-            {
                 _customerDal.Update(customer);
+            
                 return new SuccessResult(Messages.Updated);
-            }
-            else
-            {
-                return new ErrorResult(Messages.UpdatedInvalid);
-            }
+            
         }
         
     }
