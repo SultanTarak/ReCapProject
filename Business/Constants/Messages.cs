@@ -1,6 +1,7 @@
 ﻿using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -30,5 +31,7 @@ namespace Business.Constants
         
         public static string CarImageLimitExceded = "Resim limiti aşıldığı için yeni resim eklenemiyor";
         public static string CarImageNull = "Araç görüntüsü eklenmelidir";
+
+        public static string AuthorizationDenied= "Yetkiniz yok.";
     }
 }
