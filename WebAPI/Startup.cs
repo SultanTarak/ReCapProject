@@ -51,8 +51,6 @@ namespace WebAPI
             //services.AddSingleton<IRentalService, RentalManager>();
             //services.AddSingleton<IRentalDal, EfRentalDal>();
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -69,9 +67,8 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(services);
-
-
+            
+           
             services.AddDependencyResolvers(new ICoreModule[] {
                 new CoreModule()
             });
